@@ -1,6 +1,7 @@
 package main
 
 import (
+	"path/filepath"
 	"fmt"
         "os"
 	"strconv"
@@ -22,7 +23,9 @@ func readFile(filename string) []string {
 
 // calcDMI calculates the depth measurement increase for input. That is, the value between two values is positive or negative. Count the number of positive values (values where the current number is greater than the previous number).
 func calcDMI() int {
-        testInput := readFile("/home/jmorris/Dev/go-workspace/src/adventOfCode2021/problems/problem1.csv")
+        pwd, _ := os.Getwd()
+        absPath, _ := filepath.Abs(pwd+"/problems/problem1.csv")
+        testInput := readFile(absPath)
 	n := len(testInput)
         a := testInput[1:n]
 	b := testInput[0:n-1]
